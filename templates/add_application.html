@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerTrack | Add Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <span>CareerTrack</span>
+        </div>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}" class="nav-link">
+                <span>▦</span> Dashboard
+            </a>
+            <a href="{{ url_for('companies') }}" class="nav-link">
+                <span>▣</span> Companies
+            </a>
+            <a href="{{ url_for('applications') }}" class="nav-link">
+                <span>▤</span> Applications
+            </a>
+            <a href="{{ url_for('interviews') }}" class="nav-link">
+                <span>◷</span> Interviews
+            </a>
+        </nav>
+
+        <p class="menu-label">QUICK ACTIONS</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('add_company') }}" class="nav-link">
+                <span>＋</span> Add Company
+            </a>
+            <a href="{{ url_for('add_application') }}" class="nav-link active">
+                <span>＋</span> Add Application
+            </a>
+            <a href="{{ url_for('add_interview') }}" class="nav-link">
+                <span>＋</span> Add Interview
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="profile-circle">CT</div>
+            <div>
+                <strong>CareerTrack</strong>
+                <small>Job Tracker</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h2>Add Application</h2>
+                <p>Record a new job opportunity in your tracker.</p>
+            </div>
+        </header>
+
+        <section class="welcome-section">
+            <div>
+                <p class="eyebrow">TAKE THE NEXT STEP</p>
+                <h1>Track a new opportunity.</h1>
+                <p>Save your job application details and monitor your progress.</p>
+            </div>
+            <div class="welcome-icon">▤</div>
+        </section>
+
+        <section class="form-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Application Information</h2>
+                    <p>Enter the job details below</p>
+                </div>
+            </div>
+
+            <div class="form-card">
+
+                <form method="POST" action="/add-application">
+
+                    <div class="form-group">
+                        <label for="company_id">
+                            Select Company <span>*</span>
+                        </label>
+
+                        <select name="company_id" id="company_id" required>
+                            <option value="">Choose Company</option>
+
+                            {% for company in companies %}
+                                <option value="{{ company[0] }}">
+                                    {{ company[1] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="job_title">
+                            Job Title <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="job_title"
+                            name="job_title"
+                            placeholder="e.g. Python Developer"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="job_url">Job URL</label>
+
+                        <input
+                            type="url"
+                            id="job_url"
+                            name="job_url"
+                            placeholder="https://www.example.com/job"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Application Status</label>
+
+                        <select name="status" id="status">
+                            <option value="Applied">Applied</option>
+                            <option value="Interview">Interview</option>
+                            <option value="Selected">Selected</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary-button">
+                            Save Application
+                        </button>
+
+                        <a href="{{ url_for('applications') }}" class="cancel-button">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            CareerTrack · Job Application Management System
+        </footer>
+
+    </main>
+</div>
+
+</body>
+</html>

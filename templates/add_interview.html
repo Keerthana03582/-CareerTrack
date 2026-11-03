@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerTrack | Add Interview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <span>CareerTrack</span>
+        </div>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}" class="nav-link">
+                <span>▦</span> Dashboard
+            </a>
+            <a href="{{ url_for('companies') }}" class="nav-link">
+                <span>▣</span> Companies
+            </a>
+            <a href="{{ url_for('applications') }}" class="nav-link">
+                <span>▤</span> Applications
+            </a>
+            <a href="{{ url_for('interviews') }}" class="nav-link">
+                <span>◷</span> Interviews
+            </a>
+        </nav>
+
+        <p class="menu-label">QUICK ACTIONS</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('add_company') }}" class="nav-link">
+                <span>＋</span> Add Company
+            </a>
+            <a href="{{ url_for('add_application') }}" class="nav-link">
+                <span>＋</span> Add Application
+            </a>
+            <a href="{{ url_for('add_interview') }}" class="nav-link active">
+                <span>＋</span> Add Interview
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="profile-circle">CT</div>
+            <div>
+                <strong>CareerTrack</strong>
+                <small>Job Tracker</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h2>Add Interview</h2>
+                <p>Schedule and organize your upcoming interviews.</p>
+            </div>
+        </header>
+
+        <section class="welcome-section">
+            <div>
+                <p class="eyebrow">GET READY FOR SUCCESS</p>
+                <h1>Your next opportunity awaits.</h1>
+                <p>Keep your interview schedules and preparation notes organized.</p>
+            </div>
+            <div class="welcome-icon">◷</div>
+        </section>
+
+        <section class="form-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Interview Information</h2>
+                    <p>Enter your interview details below</p>
+                </div>
+            </div>
+
+            <div class="form-card">
+
+                <form method="POST" action="/add-interview">
+
+                    <div class="form-group">
+                        <label for="application_id">
+                            Select Job Application <span>*</span>
+                        </label>
+
+                        <select name="application_id" id="application_id" required>
+                            <option value="">Choose Application</option>
+
+                            {% for application in applications %}
+                                <option value="{{ application[0] }}">
+                                    {{ application[1] }} - {{ application[2] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interview_date">
+                            Interview Date and Time <span>*</span>
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="interview_date"
+                            name="interview_date"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interview_type">
+                            Interview Type <span>*</span>
+                        </label>
+
+                        <select name="interview_type" id="interview_type" required>
+                            <option value="Technical">Technical</option>
+                            <option value="HR">HR</option>
+                            <option value="Managerial">Managerial</option>
+                            <option value="Online">Online</option>
+                            <option value="Offline">Offline</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Interview Notes</label>
+
+                        <textarea
+                            name="notes"
+                            id="notes"
+                            rows="5"
+                            placeholder="Add interview preparation notes, topics to revise or important details..."
+                        ></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary-button">
+                            Save Interview
+                        </button>
+
+                        <a href="{{ url_for('interviews') }}" class="cancel-button">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            CareerTrack · Job Application Management System
+        </footer>
+
+    </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerTrack | Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <span>CareerTrack</span>
+        </div>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}" class="nav-link active">
+                <span>▦</span> Dashboard
+            </a>
+            <a href="{{ url_for('companies') }}" class="nav-link">
+                <span>▣</span> Companies
+            </a>
+            <a href="{{ url_for('applications') }}" class="nav-link">
+                <span>▤</span> Applications
+            </a>
+            <a href="{{ url_for('interviews') }}" class="nav-link">
+                <span>◷</span> Interviews
+            </a>
+        </nav>
+
+        <p class="menu-label">QUICK ACTIONS</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('add_company') }}" class="nav-link">
+                <span>＋</span> Add Company
+            </a>
+            <a href="{{ url_for('add_application') }}" class="nav-link">
+                <span>＋</span> Add Application
+            </a>
+            <a href="{{ url_for('add_interview') }}" class="nav-link">
+                <span>＋</span> Add Interview
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="profile-circle">CT</div>
+            <div>
+                <strong>CareerTrack</strong>
+                <small>Job Tracker</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h2>Dashboard</h2>
+                <p>Welcome back! Here's your career overview.</p>
+            </div>
+            <div class="topbar-tag">Career Overview</div>
+        </header>
+
+        <section class="welcome-section">
+            <div>
+                <p class="eyebrow">YOUR CAREER, ORGANIZED</p>
+                <h1>Track your progress.</h1>
+                <p>Manage companies, applications and interviews in one place.</p>
+            </div>
+            <div class="welcome-icon">✦</div>
+        </section>
+
+        <section class="section-heading">
+            <div>
+                <h2>Dashboard Overview</h2>
+                <p>A snapshot of your job search activity</p>
+            </div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-icon purple">▣</span>
+                    <span class="stat-label">COMPANIES</span>
+                </div>
+                <h2>{{ total_companies }}</h2>
+                <p>Total companies tracked</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-icon blue">▤</span>
+                    <span class="stat-label">APPLICATIONS</span>
+                </div>
+                <h2>{{ total_applications }}</h2>
+                <p>Total job applications</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-icon orange">◷</span>
+                    <span class="stat-label">INTERVIEWS</span>
+                </div>
+                <h2>{{ total_interviews }}</h2>
+                <p>Interviews scheduled or recorded</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-icon green">✓</span>
+                    <span class="stat-label">SELECTED</span>
+                </div>
+                <h2>{{ selected_applications }}</h2>
+                <p>Selected applications</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-icon red">×</span>
+                    <span class="stat-label">REJECTED</span>
+                </div>
+                <h2>{{ rejected_applications }}</h2>
+                <p>Rejected applications</p>
+            </div>
+
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="actions-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Quick Actions</h2>
+                    <p>Keep your job search updated</p>
+                </div>
+            </div>
+
+            <div class="actions-grid">
+                <a href="{{ url_for('add_company') }}" class="action-card">
+                    <span class="action-icon">＋</span>
+                    <div>
+                        <strong>Add Company</strong>
+                        <small>Track a new company</small>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </a>
+
+                <a href="{{ url_for('add_application') }}" class="action-card">
+                    <span class="action-icon">＋</span>
+                    <div>
+                        <strong>Add Application</strong>
+                        <small>Record a job application</small>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </a>
+
+                <a href="{{ url_for('add_interview') }}" class="action-card">
+                    <span class="action-icon">＋</span>
+                    <div>
+                        <strong>Add Interview</strong>
+                        <small>Record an interview</small>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <footer class="dashboard-footer">
+            CareerTrack · Job Application Management System
+        </footer>
+
+    </main>
+</div>
+
+</body>
+</html>

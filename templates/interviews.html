@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerTrack | Interviews</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <span>CareerTrack</span>
+        </div>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}" class="nav-link">
+                <span>▦</span> Dashboard
+            </a>
+            <a href="{{ url_for('companies') }}" class="nav-link">
+                <span>▣</span> Companies
+            </a>
+            <a href="{{ url_for('applications') }}" class="nav-link">
+                <span>▤</span> Applications
+            </a>
+            <a href="{{ url_for('interviews') }}" class="nav-link active">
+                <span>◷</span> Interviews
+            </a>
+        </nav>
+
+        <p class="menu-label">QUICK ACTIONS</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('add_company') }}" class="nav-link">
+                <span>＋</span> Add Company
+            </a>
+            <a href="{{ url_for('add_application') }}" class="nav-link">
+                <span>＋</span> Add Application
+            </a>
+            <a href="{{ url_for('add_interview') }}" class="nav-link">
+                <span>＋</span> Add Interview
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="profile-circle">CT</div>
+            <div>
+                <strong>CareerTrack</strong>
+                <small>Job Tracker</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h2>Interviews</h2>
+                <p>Stay prepared and keep track of your interviews.</p>
+            </div>
+
+            <a href="{{ url_for('add_interview') }}" class="primary-button">
+                + Add Interview
+            </a>
+        </header>
+
+        <section class="welcome-section">
+            <div>
+                <p class="eyebrow">YOUR NEXT OPPORTUNITY</p>
+                <h1>Prepare. Perform. Succeed.</h1>
+                <p>Organize your interview schedule and important notes.</p>
+            </div>
+            <div class="welcome-icon">◷</div>
+        </section>
+
+        <section class="interview-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>My Interviews</h2>
+                    <p>All your recorded interview details in one place</p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="modern-table interview-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>COMPANY</th>
+                            <th>JOB TITLE</th>
+                            <th>INTERVIEW DATE</th>
+                            <th>INTERVIEW TYPE</th>
+                            <th>NOTES</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for interview in interviews %}
+                        <tr>
+                            <td>
+                                <span class="company-id">#{{ interview[0] }}</span>
+                            </td>
+
+                            <td>
+                                <strong class="application-company">
+                                    {{ interview[1] }}
+                                </strong>
+                            </td>
+
+                            <td>{{ interview[2] }}</td>
+
+                            <td>
+                                <span class="interview-date">
+                                    ◷ {{ interview[3] }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="interview-type">
+                                    {{ interview[4] }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="interview-notes">
+                                    {{ interview[5] or 'No notes added' }}
+                                </span>
+                            </td>
+                        </tr>
+
+                        {% else %}
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                No interviews recorded yet. Click "Add Interview" to get started.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            CareerTrack · Job Application Management System
+        </footer>
+
+    </main>
+</div>
+
+</body>
+</html>

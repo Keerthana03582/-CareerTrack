@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerTrack | Companies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <span>CareerTrack</span>
+        </div>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}" class="nav-link">
+                <span>▦</span> Dashboard
+            </a>
+            <a href="{{ url_for('companies') }}" class="nav-link active">
+                <span>▣</span> Companies
+            </a>
+            <a href="{{ url_for('applications') }}" class="nav-link">
+                <span>▤</span> Applications
+            </a>
+            <a href="{{ url_for('interviews') }}" class="nav-link">
+                <span>◷</span> Interviews
+            </a>
+        </nav>
+
+        <p class="menu-label">QUICK ACTIONS</p>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('add_company') }}" class="nav-link">
+                <span>＋</span> Add Company
+            </a>
+            <a href="{{ url_for('add_application') }}" class="nav-link">
+                <span>＋</span> Add Application
+            </a>
+            <a href="{{ url_for('add_interview') }}" class="nav-link">
+                <span>＋</span> Add Interview
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="profile-circle">CT</div>
+            <div>
+                <strong>CareerTrack</strong>
+                <small>Job Tracker</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h2>Companies</h2>
+                <p>Manage and organize the companies you're targeting.</p>
+            </div>
+
+            <a href="{{ url_for('add_company') }}" class="primary-button">
+                + Add Company
+            </a>
+        </header>
+
+        <section class="welcome-section">
+            <div>
+                <p class="eyebrow">YOUR COMPANY DIRECTORY</p>
+                <h1>Build your career network.</h1>
+                <p>Keep all your target companies organized in one place.</p>
+            </div>
+            <div class="welcome-icon">▣</div>
+        </section>
+
+        <section class="company-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>My Companies</h2>
+                    <p>Companies saved in your CareerTrack account</p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>COMPANY NAME</th>
+                            <th>WEBSITE</th>
+                            <th>LOCATION</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for company in companies %}
+                        <tr>
+                            <td><span class="company-id">#{{ company[0] }}</span></td>
+                            <td>
+                                <div class="company-name">
+                                    <div class="company-avatar">
+                                        {{ company[1][0]|upper if company[1] else '?' }}
+                                    </div>
+                                    <strong>{{ company[1] }}</strong>
+                                </div>
+                            </td>
+                            <td>
+                                {% if company[2] %}
+                                    <span class="website-text">{{ company[2] }}</span>
+                                {% else %}
+                                    <span class="muted-text">Not provided</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="location-text">⌖ {{ company[3] or 'Not provided' }}</span>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                No companies added yet. Click "Add Company" to get started.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            CareerTrack · Job Application Management System
+        </footer>
+
+    </main>
+</div>
+
+</body>
+</html>
