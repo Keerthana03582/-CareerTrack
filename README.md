@@ -128,3 +128,18 @@ Through this project, I practised:
 B.Tech Computer Science and Engineering Graduate – 2026
 
 GitHub: https://github.com/Keerthana03582
+
+
+## Application Screenshots
+
+### Dashboard
+![CareerTrack Dashboard](screenshots/dashboard.png)
+
+### Companies
+![Companies Page](screenshots/companies.png)
+
+### Interviews
+![Interviews Page](screenshots/interviews.png)
+
+### Add Application
+![Add Application Page](screenshots/add_application.png)
